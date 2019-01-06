@@ -1,0 +1,35 @@
+import Tkinter as tk
+import serial
+
+def printangle():
+    b = slider.get()
+    ba=str(b)+"a"
+    ser.write(ba.encode())
+
+def printangle2(a):
+    aa=str(a)+"a"
+    ser.write(aa.encode())
+
+
+
+ser=serial.Serial(port="COM3",baudrate=9600)
+
+root=tk.Tk()
+
+
+label1=tk.Label(root,text="Servo Motor Controller",font=("aerial",20))
+label1.pack()
+label2=tk.Label(root,text="Abdullah.S.Khan(32790) \nUzair Javed (32658)",font=("aerial",14),fg="red")
+label2.pack()
+label3=tk.Label(root,text="Set An Angle",font=("aerial",12),fg="black")
+label3.pack()
+
+slider=tk.Scale(root,from_=0,to=180,orient="horizontal",command=printangle2)
+slider.pack(expand=True)
+button1=tk.Button(root,command=printangle,text="Turn Motor")
+button1.pack(expand=True)
+
+
+root.mainloop()
+
+ser.close()
